@@ -59,6 +59,9 @@ class App extends Component {
 
   componentDidMount() {
     this.updateUserState();
+
+    // 🔥 Wake up AI service (optional)
+    fetch("https://gogarage-ai-service.onrender.com/").catch(() => {});
   }
 
   componentDidUpdate(prevProps) {

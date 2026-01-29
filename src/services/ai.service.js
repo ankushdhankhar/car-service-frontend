@@ -4,7 +4,7 @@ import axios from "axios";
 
 const BASE_URL = process.env.REACT_APP_AI_BASE_URL;
 
-console.log("AI BASE URL:", BASE_URL);
+// console.log("AI BASE URL:", BASE_URL);
 
 const AI_API_URL = `${BASE_URL}/ai`;
 class AIService {

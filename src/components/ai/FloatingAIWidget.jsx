@@ -15,7 +15,7 @@ const FloatingAIWidget = () => {
     }
 
     setLoading(true);
-    setError(null);
+    setError("Starting AI service… please wait ⏳");
 
     navigator.geolocation.getCurrentPosition(
       async (position) => {
@@ -25,11 +25,12 @@ const FloatingAIWidget = () => {
             position.coords.longitude,
           );
           setData(res.data);
+          setError(null);
         } catch (err) {
           setError(
-            err?.response?.data?.detail ||
-              err?.message ||
-              "AI service unavailable",
+            err?.response?.data?.error ||
+              err?.response?.data?.detail ||
+              "AI service is temporarily unavailable. Please try again.",
           );
         } finally {
           setLoading(false);
