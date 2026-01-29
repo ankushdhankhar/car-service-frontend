@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
-import logo from "./assets/logo.png";
 
 import Login from "./components/login";
 import Register from "./components/register";
@@ -306,7 +305,6 @@ class App extends Component {
               </div>
             </div>
           </nav>
-          
 
           <div className="container mt-3">
             <Routes>
