@@ -107,226 +107,206 @@ class App extends Component {
     return (
       <Router>
         <div>
-          <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-            <Link to={"/"} className="navbar-brand">
-              <div>
-                <img src={logo} alt="" />
-                {/* We provide most unique premium template for you. */}
+          <nav className="navbar navbar-expand-lg fixed-top modern-navbar">
+            <div className="container-fluid px-4">
+              {/* Brand */}
+              {/* <Link
+                to="/"
+                className="navbar-brand d-flex align-items-center gap-2"
+              >
+                <img src={logo} alt="AutoCare" height="36" />
+                <span className="brand-text">AutoCare</span>
+              </Link> */}
+
+              <Link
+                to="/"
+                className="navbar-brand d-flex align-items-center gap-2 gogarage-brand"
+              >
+                <div className="brand-icon">G</div>
+                <div className="d-flex flex-column lh-sm">
+                  <span className="brand-name">GoGarage</span>
+                  <small className="brand-tagline">Smart Car Service</small>
+                </div>
+              </Link>
+
+              <button
+                className="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#mainNavbar"
+              >
+                <span className="navbar-toggler-icon"></span>
+              </button>
+
+              <div className="collapse navbar-collapse" id="mainNavbar">
+                {/* CENTER NAV */}
+                <ul className="navbar-nav mx-auto nav-center">
+                  {showCommonBoard && (
+                    <>
+                      <li className="nav-item">
+                        <Link to="/home" className="nav-link">
+                          Home
+                        </Link>
+                      </li>
+                      <li className="nav-item">
+                        <Link to="/services" className="nav-link">
+                          Services
+                        </Link>
+                      </li>
+                      <li className="nav-item">
+                        <Link to="/aboutus" className="nav-link">
+                          About
+                        </Link>
+                      </li>
+                      <li className="nav-item">
+                        <Link to="/faqs" className="nav-link">
+                          FAQs
+                        </Link>
+                      </li>
+                      <li className="nav-item">
+                        <Link to="/contactus" className="nav-link">
+                          Contact
+                        </Link>
+                      </li>
+                    </>
+                  )}
+
+                  {currentUser && showAdminBoard && (
+                    <>
+                      <li className="nav-item">
+                        <Link to="/home" className="nav-link">
+                          Dashboard
+                        </Link>
+                      </li>
+                      <li className="nav-item">
+                        <Link to="/vendor-mgmt" className="nav-link">
+                          Vendors
+                        </Link>
+                      </li>
+                      <li className="nav-item">
+                        <Link to="/service-package" className="nav-link">
+                          Packages
+                        </Link>
+                      </li>
+                      <li className="nav-item">
+                        <Link to="/admin/feedback" className="nav-link">
+                          Feedback
+                        </Link>
+                      </li>
+                    </>
+                  )}
+
+                  {showVendorBoard && (
+                    <>
+                      <li className="nav-item">
+                        <Link to="/home" className="nav-link">
+                          Dashboard
+                        </Link>
+                      </li>
+                      <li className="nav-item">
+                        <Link to="/vendor/employee-mgmt" className="nav-link">
+                          Employees
+                        </Link>
+                      </li>
+                      <li className="nav-item">
+                        <Link to="/vendor/customer-mgmt" className="nav-link">
+                          Customers
+                        </Link>
+                      </li>
+                      <li className="nav-item">
+                        <Link to="/vendor" className="nav-link">
+                          Feedback
+                        </Link>
+                      </li>
+                    </>
+                  )}
+
+                  {showEmployeeBoard && (
+                    <>
+                      <li className="nav-item">
+                        <Link to="/home" className="nav-link">
+                          Dashboard
+                        </Link>
+                      </li>
+                      <li className="nav-item">
+                        <Link to="/employee/customer-mgmt" className="nav-link">
+                          Customers
+                        </Link>
+                      </li>
+                      <li className="nav-item">
+                        <Link to="/employee/service-mgmt" className="nav-link">
+                          Services
+                        </Link>
+                      </li>
+                      <li className="nav-item">
+                        <Link to="/employee" className="nav-link">
+                          Feedback
+                        </Link>
+                      </li>
+                    </>
+                  )}
+
+                  {showCustomerBoard && (
+                    <>
+                      <li className="nav-item">
+                        <Link to="/home" className="nav-link">
+                          Home
+                        </Link>
+                      </li>
+                      <li className="nav-item">
+                        <Link to="/services" className="nav-link">
+                          Services
+                        </Link>
+                      </li>
+                      <li className="nav-item">
+                        <Link to="/customer/book-service" className="nav-link">
+                          Book Service
+                        </Link>
+                      </li>
+                      <li className="nav-item">
+                        <Link to="/customer/feedback" className="nav-link">
+                          Feedback
+                        </Link>
+                      </li>
+                      <li className="nav-item">
+                        <Link to="/customer/editprofile" className="nav-link">
+                          Profile
+                        </Link>
+                      </li>
+                    </>
+                  )}
+                </ul>
+
+                {/* RIGHT ACTIONS */}
+                <div className="d-flex align-items-center gap-3">
+                  {currentUser ? (
+                    <>
+                      <span className="user-email d-none d-lg-block">
+                        {currentUser.email}
+                      </span>
+                      <a
+                        href="/login"
+                        onClick={this.logOut}
+                        className="btn btn-outline-accent btn-sm"
+                      >
+                        Logout
+                      </a>
+                    </>
+                  ) : (
+                    <>
+                      <Link to="/login" className="btn btn-ghost btn-sm">
+                        Login
+                      </Link>
+                      <Link to="/register" className="btn btn-accent btn-sm">
+                        Get Started
+                      </Link>
+                    </>
+                  )}
+                </div>
               </div>
-            </Link>
-            <div className="navbar-nav mr-auto">
-              {/* -----------------------Home Page----------------------------------- */}
-              {showCommonBoard && (
-                <li className="nav-item">
-                  <Link to={"/home"} className="nav-link">
-                    Home
-                  </Link>
-                </li>
-              )}
-              {showCommonBoard && (
-                <li className="nav-item">
-                  <Link to={"/services"} className="nav-link">
-                    Services
-                  </Link>
-                </li>
-              )}
-              {showCommonBoard && (
-                <li className="nav-item">
-                  <Link to={"/aboutus"} className="nav-link">
-                    About us
-                  </Link>
-                </li>
-              )}
-              {showCommonBoard && (
-                <li className="nav-item">
-                  <Link to={"/faqs"} className="nav-link">
-                    FAQs
-                  </Link>
-                </li>
-              )}
-              {showCommonBoard && (
-                <li className="nav-item">
-                  <Link to={"/contactus"} className="nav-link">
-                    Contact us
-                  </Link>
-                </li>
-              )}
-
-              {/* --------------------Admin Board--------------------------------------------- */}
-              {currentUser && showAdminBoard && (
-                <li className="nav-item">
-                  <Link to={"/home"} className="nav-link">
-                    Home
-                  </Link>
-                </li>
-              )}
-
-              {currentUser && showAdminBoard && (
-                <li className="nav-item">
-                  <Link to={"/vendor-mgmt"} className="nav-link">
-                    Vendor Management
-                  </Link>
-                </li>
-              )}
-
-              {currentUser && showAdminBoard && (
-                <li className="nav-item">
-                  <Link to={"/service-package"} className="nav-link">
-                    Service Package
-                  </Link>
-                </li>
-              )}
-
-              {currentUser && showAdminBoard && (
-                <li className="nav-item">
-                  <Link to={"/admin/feedback"} className="nav-link">
-                    Feedback
-                  </Link>
-                </li>
-              )}
-
-              {/* ---------------Vendor Board---------------------------------- */}
-              {showVendorBoard && (
-                <li className="nav-item">
-                  <Link to={"/home"} className="nav-link">
-                    Home
-                  </Link>
-                </li>
-              )}
-
-              {showVendorBoard && (
-                <li className="nav-item">
-                  <Link to={"/vendor/employee-mgmt"} className="nav-link">
-                    Employee Management
-                  </Link>
-                </li>
-              )}
-
-              {showVendorBoard && (
-                <li className="nav-item">
-                  <Link to={"/vendor/customer-mgmt"} className="nav-link">
-                    Customer Management
-                  </Link>
-                </li>
-              )}
-
-              {showVendorBoard && (
-                <li className="nav-item">
-                  <Link to={"/vendor"} className="nav-link">
-                    Feedback
-                  </Link>
-                </li>
-              )}
-
-              {/* --------------------Employee Board--------------------------------------------- */}
-              {showEmployeeBoard && (
-                <li className="nav-item">
-                  <Link to={"/home"} className="nav-link">
-                    Home
-                  </Link>
-                </li>
-              )}
-
-              {showEmployeeBoard && (
-                <li className="nav-item">
-                  <Link to={"/employee/customer-mgmt"} className="nav-link">
-                    Customer Management
-                  </Link>
-                </li>
-              )}
-
-              {showEmployeeBoard && (
-                <li className="nav-item">
-                  <Link to={"/employee/service-mgmt"} className="nav-link">
-                    Service Management
-                  </Link>
-                </li>
-              )}
-              {/* {showEmployeeBoard && (
-                <li className="nav-item">
-                  <Link to={"/employee/invoice-mgmt"} className="nav-link">
-                    Invoice Management
-                  </Link>
-                </li>
-              )} */}
-
-              {showEmployeeBoard && (
-                <li className="nav-item">
-                  <Link to={"/employee"} className="nav-link">
-                    Feedback
-                  </Link>
-                </li>
-              )}
-
-              {/* --------------------Customer Board--------------------------------------------- */}
-              {showCustomerBoard && (
-                <li className="nav-item">
-                  <Link to={"/home"} className="nav-link">
-                    Home
-                  </Link>
-                </li>
-              )}
-              {showCustomerBoard && (
-                <li className="nav-item">
-                  <Link to={"/services"} className="nav-link">
-                    Services
-                  </Link>
-                </li>
-              )}
-              {showCustomerBoard && (
-                <li className="nav-item">
-                  <Link to={"/customer/book-service"} className="nav-link">
-                    Book Service
-                  </Link>
-                </li>
-              )}
-              {showCustomerBoard && (
-                <li className="nav-item">
-                  <Link to={"/customer/feedback"} className="nav-link">
-                    Feedback
-                  </Link>
-                </li>
-              )}
-
-              {showCustomerBoard && (
-                <li className="nav-item">
-                  <Link to={"/customer/editprofile"} className="nav-link">
-                    Profile
-                  </Link>
-                </li>
-              )}
             </div>
-            {/* --------------------Common Board--------------------------------------------- */}
-            {currentUser ? (
-              <div className="navbar-nav ml-auto">
-                <li className="nav-item">
-                  <Link to={"/profile"} className="nav-link">
-                    {currentUser.email}
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <a href="/login" className="nav-link" onClick={this.logOut}>
-                    Logout
-                  </a>
-                </li>
-              </div>
-            ) : (
-              <div className="navbar-nav ml-auto">
-                <li className="nav-item">
-                  <Link to={"/login"} className="nav-link">
-                    Login
-                  </Link>
-                </li>
-
-                <li className="nav-item">
-                  <Link to={"/register"} className="nav-link">
-                    Sign Up
-                  </Link>
-                </li>
-              </div>
-            )}
           </nav>
-          <FooterComponent />
+          
 
           <div className="container mt-3">
             <Routes>
@@ -403,9 +383,9 @@ class App extends Component {
               <Route path="/faqs" element={<FAQs />} />
             </Routes>
             {/* AI Floating Widget */}
-          <FloatingAIWidget />
+            <FloatingAIWidget />
           </div>
-          
+          <FooterComponent />
         </div>
       </Router>
     );

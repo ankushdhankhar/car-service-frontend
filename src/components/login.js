@@ -1,11 +1,8 @@
 import React from "react";
-import { Navigate } from 'react-router-dom';
+import { Navigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-
 import { connect } from "react-redux";
 import { login } from "../actions/auth";
-
-import './Login.css'
 
 function LoginForm({ isLoggedIn, message, dispatch }) {
   const {
@@ -19,77 +16,48 @@ function LoginForm({ isLoggedIn, message, dispatch }) {
     try {
       await dispatch(login(data.email, data.password));
       window.location.href = "/profile";
-    } catch (error) {
+    } catch {
       setError("submit", { message: "Login failed" });
     }
   };
 
-  if (isLoggedIn) {
-    return <Navigate to="/profile" replace />;
-  }
+  if (isLoggedIn) return <Navigate to="/profile" replace />;
 
   return (
-    <div className="col-md-12">
-      <div className="card card-container">
-        <img
-          src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
-          alt="profile-img"
-          className="profile-img-card"
-        />
+    <div className="d-flex justify-content-center mt-5">
+      <div className="card shadow-lg p-4" style={{ maxWidth: "400px", width: "100%" }}>
+        
+        <h3 className="text-center fw-bold mb-1">Welcome Back</h3>
+        <p className="text-center text-muted mb-4">
+          Login to manage your car services
+        </p>
 
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="form-group">
-            <label htmlFor="email">Email</label>
+          <div className="mb-3">
+            <label className="form-label">Email</label>
             <input
-              type="email"
-              className={`form-control ${errors.email ? 'is-invalid' : ''}`}
-              {...register("email", {
-                required: "This field is required!"
-              })}
+              className={`form-control ${errors.email ? "is-invalid" : ""}`}
+              {...register("email", { required: "Email is required" })}
             />
-            {errors.email && (
-              <div className="alert alert-danger" role="alert">
-                {errors.email.message}
-              </div>
-            )}
+            {errors.email && <div className="invalid-feedback">{errors.email.message}</div>}
           </div>
 
-          <div className="form-group">
-            <label htmlFor="password">Password</label>
+          <div className="mb-4">
+            <label className="form-label">Password</label>
             <input
               type="password"
-              className={`form-control ${errors.password ? 'is-invalid' : ''}`}
-              {...register("password", { 
-                required: "This field is required!" 
-              })}
+              className={`form-control ${errors.password ? "is-invalid" : ""}`}
+              {...register("password", { required: "Password is required" })}
             />
-            {errors.password && (
-              <div className="alert alert-danger" role="alert">
-                {errors.password.message}
-              </div>
-            )}
+            {errors.password && <div className="invalid-feedback">{errors.password.message}</div>}
           </div>
 
-          <div className="form-group">
-            <button
-              type="submit"
-              className="btn btn-primary btn-block"
-              disabled={isSubmitting}
-            >
-              {isSubmitting && (
-                <span className="spinner-border spinner-border-sm"></span>
-              )}
-              <span>Login</span>
-            </button>
-          </div>
+          <button className="btn btn-warning w-100 fw-semibold" disabled={isSubmitting}>
+            {isSubmitting && <span className="spinner-border spinner-border-sm me-2"></span>}
+            Login
+          </button>
 
-          {message && (
-            <div className="form-group">
-              <div className="alert alert-danger" role="alert">
-                {message}
-              </div>
-            </div>
-          )}
+          {message && <div className="alert alert-danger mt-3">{message}</div>}
         </form>
       </div>
     </div>
@@ -97,11 +65,9 @@ function LoginForm({ isLoggedIn, message, dispatch }) {
 }
 
 function mapStateToProps(state) {
-  const { isLoggedIn } = state.auth;
-  const { message } = state.message;
   return {
-    isLoggedIn,
-    message
+    isLoggedIn: state.auth.isLoggedIn,
+    message: state.message.message
   };
 }
 

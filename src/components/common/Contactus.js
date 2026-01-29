@@ -1,8 +1,18 @@
-export function Contactus(props) {
+export function Contactus() {
   return (
-    <div>
-      <h1>Feel free to get in touch.</h1>
-      <h3>You can email me at: motorworks@abc.com</h3>
+    <div className="page-wrapper">
+      <div className="content-card">
+        <h1 className="page-title">Contact Us</h1>
+
+        <p className="page-subtitle">
+          We’re here to help you with anything related to your car service.
+        </p>
+
+        <div className="info-box">
+          <span className="info-label">Email</span>
+          <span className="info-value">support@gogarage.com</span>
+        </div>
+      </div>
     </div>
   );
 }

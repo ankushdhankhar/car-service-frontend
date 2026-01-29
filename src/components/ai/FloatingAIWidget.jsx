@@ -19,26 +19,23 @@ const FloatingAIWidget = () => {
 
     navigator.geolocation.getCurrentPosition(
       async (position) => {
-        const latitude = position.coords.latitude;
-        const longitude = position.coords.longitude;
-
         try {
-          const res = await aiService.analyzeLocation(latitude, longitude);
+          const res = await aiService.analyzeLocation(
+            position.coords.latitude,
+            position.coords.longitude,
+          );
           setData(res.data);
         } catch (err) {
-          console.error("AI ERROR FULL:", err);
-          console.error("AI ERROR RESPONSE:", err?.response);
-          console.error("AI ERROR MESSAGE:", err?.message);
           setError(
             err?.response?.data?.detail ||
               err?.message ||
-              "AI service is unavailable",
+              "AI service unavailable",
           );
         } finally {
           setLoading(false);
         }
       },
-      (err) => {
+      () => {
         setLoading(false);
         setError("Location permission denied");
       },
@@ -47,8 +44,6 @@ const FloatingAIWidget = () => {
 
   const toggleWidget = () => {
     setOpen(!open);
-
-    // fetch only first time when opening
     if (!open && !data && !loading) {
       getCurrentLocationAndFetchAI();
     }
@@ -56,71 +51,55 @@ const FloatingAIWidget = () => {
 
   return (
     <>
-      {/* Floating Button */}
-      <div className="ai-fab" onClick={toggleWidget}>
-        Get AI suggestions
-      </div>
+      {/* Floating action button */}
+      <button className="ai-trigger" onClick={toggleWidget}>
+        <span className="ai-dot" />
+        AI Assist
+      </button>
 
-      {/* Popup */}
       {open && (
-        <div className="ai-popup">
-          <div className="ai-header">
-            <span>AI Assistant</span>
-            <button onClick={toggleWidget}>✖</button>
+        <div className="ai-panel">
+          <div className="ai-panel-header">
+            <span>AI Insights</span>
+            <button onClick={toggleWidget}>×</button>
           </div>
 
-          <div className="ai-body">
-            {loading && <p>📍 Fetching your location...</p>}
-
-            {error && <p style={{ color: "red" }}>{error}</p>}
+          <div className="ai-panel-body">
+            {loading && <div className="ai-state">Analyzing location…</div>}
+            {error && <div className="ai-error">{error}</div>}
 
             {!loading && data && (
               <>
-                <p>
-                  <strong>AI Result:</strong>
-                </p>
-                {!loading && data && (
-                  <div className="ai-result">
-                    <h5>🚘 AI Vehicle Advisory</h5>
-
-                    <div className="ai-meta">
-                      <span>📍 Lat: {data.latitude.toFixed(4)}</span>
-                      <span> | Lng: {data.longitude.toFixed(4)}</span>
-                    </div>
-
-                    <div className="ai-terrain">
-                      <strong>🗺️ Terrain:</strong> {data.terrain}
-                    </div>
-
-                    <div
-                      className={`ai-risk ${data.suggestions.risk_level.toLowerCase()}`}
-                    >
-                      ⚠️ Risk Level: {data.suggestions.risk_level}
-                    </div>
-
-                    <hr />
-
-                    <div>
-                      <h6>🔧 Recommended Services</h6>
-                      <ul>
-                        {data.suggestions.recommended_services.map(
-                          (item, idx) => (
-                            <li key={idx}>{item}</li>
-                          ),
-                        )}
-                      </ul>
-                    </div>
-
-                    <div>
-                      <h6>🚗 Driving Tips</h6>
-                      <ul>
-                        {data.suggestions.driving_tips.map((tip, idx) => (
-                          <li key={idx}>{tip}</li>
-                        ))}
-                      </ul>
-                    </div>
+                <div className="ai-info">
+                  <div>
+                    <span className="label">Terrain</span>
+                    <span className="value">{data.terrain}</span>
                   </div>
-                )}
+
+                  <div
+                    className={`risk ${data.suggestions.risk_level.toLowerCase()}`}
+                  >
+                    Risk: {data.suggestions.risk_level}
+                  </div>
+                </div>
+
+                <div className="ai-section">
+                  <h6>Recommended Services</h6>
+                  <ul>
+                    {data.suggestions.recommended_services.map((s, i) => (
+                      <li key={i}>{s}</li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="ai-section">
+                  <h6>Driving Tips</h6>
+                  <ul>
+                    {data.suggestions.driving_tips.map((t, i) => (
+                      <li key={i}>{t}</li>
+                    ))}
+                  </ul>
+                </div>
               </>
             )}
           </div>

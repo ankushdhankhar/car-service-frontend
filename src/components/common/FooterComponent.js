@@ -1,22 +1,13 @@
-import React, { Component } from "react";
+import React from "react";
 
-class FooterComponent extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-
-  render() {
-    return (
-      <div className="fixed-bottom">
-        <footer className="footer">
-          <span className="text-muted">
-            All Rights Reserved 2021 @CarServiceApp
-          </span>
-        </footer>
-      </div>
-    );
-  }
+function FooterComponent() {
+  return (
+    <footer className="modern-footer">
+      <span>
+        © {new Date().getFullYear()} GoGarage. All rights reserved.
+      </span>
+    </footer>
+  );
 }
 
 export default FooterComponent;

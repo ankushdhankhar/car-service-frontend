@@ -1,45 +1,156 @@
-.ai-fab {
+/* Floating AI Button – GoGarage style */
+.ai-trigger {
   position: fixed;
-  bottom: 60px;
-  right: 40px;
-  width: 205px;
-  height: 60px;
-  border-radius: 10%;
-  background: #1967dd;
-  color: white;
-  font-size: 20px;
+  bottom: 24px;
+  right: 24px;
+
   display: flex;
   align-items: center;
-  justify-content: center;
+  gap: 8px;
+
+  padding: 10px 16px;
+  border-radius: 999px;
+
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(10px);
+
+  border: 1px solid rgba(15, 23, 42, 0.15);
+  color: #0f172a;
+
+  font-size: 0.8rem;
+  font-weight: 600;
+
   cursor: pointer;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.18);
   z-index: 1000;
+
+  transition: all 0.25s ease;
 }
 
-.ai-popup {
+/* Orange indicator dot */
+.ai-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #f97316;
+}
+
+/* Hover */
+.ai-trigger:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.25);
+  background: rgba(255, 255, 255, 0.9);
+}
+
+
+/* Panel */
+.ai-panel {
   position: fixed;
-  bottom: 90px;
-  right: 20px;
-  width: 320px;
-  height: 400px;
-  background: white;
-  border-radius: 10px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  bottom: 84px;
+  right: 24px;
+  width: 340px;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(12px);
+  border-radius: 16px;
+  box-shadow: 0 25px 60px rgba(15, 23, 42, 0.2);
+  overflow: hidden;
   z-index: 1000;
-  display: flex;
-  flex-direction: column;
 }
 
-.ai-header {
-  padding: 10px;
-  background: #0d6efd;
-  color: white;
+/* Header */
+.ai-panel-header {
   display: flex;
   justify-content: space-between;
-  border-radius: 10px 10px 0 0;
+  align-items: center;
+  padding: 14px 16px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08);
 }
 
-.ai-body {
-  padding: 10px;
+.ai-panel-header button {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+/* Body */
+.ai-panel-body {
+  padding: 16px;
+  font-size: 0.85rem;
+  color: #334155;
+  max-height: 420px;
   overflow-y: auto;
-  font-size: 13px;
+}
+
+/* States */
+.ai-state {
+  color: #64748b;
+}
+
+.ai-error {
+  color: #dc2626;
+  font-weight: 500;
+}
+
+/* Info */
+.ai-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.ai-info .label {
+  display: block;
+  font-size: 0.7rem;
+  color: #64748b;
+}
+
+.ai-info .value {
+  font-weight: 600;
+}
+
+/* Risk */
+.risk {
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+.risk.low {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.risk.medium {
+  background: #fef9c3;
+  color: #854d0e;
+}
+
+.risk.high {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+/* Sections */
+.ai-section {
+  margin-top: 14px;
+}
+
+.ai-section h6 {
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.ai-section ul {
+  padding-left: 16px;
+  margin: 0;
+}
+
+.ai-section li {
+  margin-bottom: 4px;
 }

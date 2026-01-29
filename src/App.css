@@ -1,48 +1,117 @@
-.App {
-  text-align: center;
+/* ===============================
+   GLOBAL LAYOUT
+================================ */
+body {
+  padding-top: 72px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+/* ===============================
+   APP LAYOUT (FINAL FIX)
+================================ */
+.app-layout {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+}
+
+.app-content {
+  flex: 1; /* 🔴 THIS pushes footer down */
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===============================
+   GLASS NAVBAR
+================================ */
+.modern-navbar {
+  background: rgba(248, 250, 252, 0.7);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+}
+
+/* ===============================
+   BRAND
+================================ */
+.gogarage-brand {
+  display: flex;
+  gap: 10px;
+  text-decoration: none;
+  transition: transform 0.25s ease;
+}
+
+.brand-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 9px;
+  background: linear-gradient(135deg, #f97316, #ea580c);
+  color: white;
+  font-weight: 700;
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+
+.brand-name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.brand-tagline {
+  font-size: 0.68rem;
+  color: #64748b;
+}
+
+/* hover */
+.gogarage-brand:hover {
+  transform: translateY(-1px);
+}
+
+/* ===============================
+   NAV LINKS
+================================ */
+.nav-center .nav-link {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #334155;
+  padding: 0.45rem 0.7rem;
+  border-radius: 8px;
+}
+
+.nav-center .nav-link:hover {
+  background: rgba(15, 23, 42, 0.06);
+}
+
+/* ===============================
+   BUTTONS
+================================ */
+.btn {
+  font-size: 0.8rem;
+}
+
+.btn-accent {
+  background-color: #f97316;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.btn-outline-accent {
+  border: 1px solid #f97316;
+  color: #f97316;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.btn-ghost {
+  background: transparent;
+  color: #334155;
 }
 
-.footer {
-  position: absolute;
-  bottom: 0;
-  width:100%;
-  height: 50px;
-  background-color: black;
+/* ===============================
+   FOOTER
+================================ */
+.modern-footer {
+  padding: 16px;
   text-align: center;
-  color: white;
+  font-size: 0.75rem;
+  color: #64748b;
+  border-top: 1px solid rgba(15, 23, 42, 0.08);
+  background: rgba(248, 250, 252, 0.85);
 }
