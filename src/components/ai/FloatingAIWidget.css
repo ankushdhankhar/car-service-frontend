@@ -1,0 +1,45 @@
+.ai-fab {
+  position: fixed;
+  bottom: 60px;
+  right: 40px;
+  width: 205px;
+  height: 60px;
+  border-radius: 10%;
+  background: #1967dd;
+  color: white;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+.ai-popup {
+  position: fixed;
+  bottom: 90px;
+  right: 20px;
+  width: 320px;
+  height: 400px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+}
+
+.ai-header {
+  padding: 10px;
+  background: #0d6efd;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 10px 10px 0 0;
+}
+
+.ai-body {
+  padding: 10px;
+  overflow-y: auto;
+  font-size: 13px;
+}

@@ -41,6 +41,7 @@ import CreateServicePackage from "./components/admin/servicepackage/CreateServic
 import Services from "./components/common/Services";
 import Invoice from "./components/customer/Invoice";
 import ViewInvoice from "./components/employee/ViewInvoice";
+import FloatingAIWidget from "./components/ai/FloatingAIWidget";
 
 class App extends Component {
   constructor(props) {
@@ -55,7 +56,6 @@ class App extends Component {
       showCommonBoard: false,
       currentUser: undefined,
     };
-
   }
 
   componentDidMount() {
@@ -341,7 +341,10 @@ class App extends Component {
               {/* vendor */}
               <Route path="/vendor-mgmt" element={<VendorList />} />
               <Route path="/service-package" element={<ServicePackageList />} />
-              <Route path="/add-package/:id" element={<CreateServicePackage />} />
+              <Route
+                path="/add-package/:id"
+                element={<CreateServicePackage />}
+              />
               <Route path="/add-vendor/:id" element={<CreateVendor />} />
               <Route path="/view-vendor/:id" element={<ViewVendor />} />
               <Route path="/admin/feedback" element={<FeedbackComponent />} />
@@ -351,22 +354,46 @@ class App extends Component {
               <Route path="/vendor/employee-mgmt" element={<EmployeeList />} />
               <Route path="/add-employee/:id" element={<CreateEmployee />} />
               <Route path="/vendor/customer-mgmt" element={<CustomerList />} />
-              <Route path="/employee/view-invoice/:customerId/:requestId" element={<ViewInvoice />} />
-              
+              <Route
+                path="/employee/view-invoice/:customerId/:requestId"
+                element={<ViewInvoice />}
+              />
+
               {/* customer crud operation from employee */}
-              <Route path="/employee/customer-mgmt" element={<CustomerListByEmployee />} />
+              <Route
+                path="/employee/customer-mgmt"
+                element={<CustomerListByEmployee />}
+              />
               <Route path="/add-customer/:id" element={<CreateCustomer />} />
-              <Route path="/employee/service-mgmt" element={<ListofService />} />
+              <Route
+                path="/employee/service-mgmt"
+                element={<ListofService />}
+              />
               <Route path="/add-service/:id/:pid" element={<AddService />} />
-              <Route path="/employee/invoice-mgmt" element={<SiteMaitainance />} />
-              <Route path="/customer/editprofile" element={<CustomerEditProfile />} />
-              <Route path="/generate-invoice/:customerId/:requestId" element={<GenerateInvoice />} />
-              
+              <Route
+                path="/employee/invoice-mgmt"
+                element={<SiteMaitainance />}
+              />
+              <Route
+                path="/customer/editprofile"
+                element={<CustomerEditProfile />}
+              />
+              <Route
+                path="/generate-invoice/:customerId/:requestId"
+                element={<GenerateInvoice />}
+              />
+
               {/* Customer CRUD */}
               <Route path="/customer-home" element={<CustomerHome />} />
               <Route path="/customer/book-service" element={<ServiceList />} />
-              <Route path="/customer/add-service/:id/:pid" element={<BookService />} />
-              <Route path="/customer/print-invoice/:customerId/:requestId" element={<Invoice />} />
+              <Route
+                path="/customer/add-service/:id/:pid"
+                element={<BookService />}
+              />
+              <Route
+                path="/customer/print-invoice/:customerId/:requestId"
+                element={<Invoice />}
+              />
               <Route path="/customer/feedback" element={<SiteMaitainance />} />
 
               {/* maintenance page */}
@@ -375,7 +402,10 @@ class App extends Component {
               <Route path="/contactus" element={<Contactus />} />
               <Route path="/faqs" element={<FAQs />} />
             </Routes>
+            {/* AI Floating Widget */}
+          <FloatingAIWidget />
           </div>
+          
         </div>
       </Router>
     );
