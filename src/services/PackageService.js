@@ -1,7 +1,7 @@
 import axios from "axios";
 import authHeader from "./auth-header";
 
-const API_URL = "http://localhost:8080/servicepackage";
+const API_URL = "https://gogarage-backend-1.onrender.com/servicepackage";
 
 class PackageService {
     getPackages(){

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import authHeader from "./auth-header";
 
-const EMPLOYEE_API_BASE_URL = "http://localhost:8080";
+const EMPLOYEE_API_BASE_URL = "https://gogarage-backend-1.onrender.com";
 
 class EmployeeService {
 

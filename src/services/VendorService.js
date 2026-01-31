@@ -1,7 +1,7 @@
 import axios from "axios";
 import authHeader from "./auth-header";
 
-const VENDOR_API_BASE_URL = "http://localhost:8080/vendor";
+const VENDOR_API_BASE_URL = "https://gogarage-backend-1.onrender.com/vendor";
 
 class VendorService {
   // Employee management methods for vendors
