@@ -42,7 +42,6 @@
   background: rgba(255, 255, 255, 0.9);
 }
 
-
 /* Panel */
 .ai-panel {
   position: fixed;
@@ -146,11 +145,129 @@
   margin-bottom: 6px;
 }
 
+/* Make suggestions & tips more compact */
 .ai-section ul {
-  padding-left: 16px;
-  margin: 0;
+  padding-left: 14px;
 }
 
 .ai-section li {
-  margin-bottom: 4px;
+  margin-bottom: 3px;
+  font-size: 0.75rem;
+  line-height: 1.35;
+}
+
+
+.ai-chat {
+  border-top: 1px solid #eee;
+  padding-top: 10px;
+}
+/* Chat container scrolls, not messages */
+.chat-messages {
+  max-height: 160px;
+  overflow-y: auto;
+  margin-bottom: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* Base chat bubble */
+.chat-msg {
+  max-width: 85%;
+  padding: 8px 10px;
+  font-size: 0.78rem;
+  line-height: 1.45;
+  border-radius: 10px;
+  word-wrap: break-word;
+  white-space: pre-wrap; /* VERY IMPORTANT */
+}
+
+/* User message */
+.chat-msg.user {
+  align-self: flex-end;
+  background: #e3f2fd;
+  color: #0f172a;
+  border-bottom-right-radius: 4px;
+}
+
+/* AI message */
+.chat-msg.ai {
+  align-self: flex-start;
+  background: #f8fafc;
+  color: #1e293b;
+  border-bottom-left-radius: 4px;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+}
+
+
+/* Chat input container */
+.chat-input {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+/* Text input */
+.chat-input input {
+  flex: 1;
+  padding: 7px 10px;
+  font-size: 0.78rem;
+  border-radius: 8px;
+  border: 1px solid rgba(15, 23, 42, 0.15);
+  background: rgba(255, 255, 255, 0.9);
+  color: #0f172a;
+}
+
+/* Focus state */
+.chat-input input:focus {
+  outline: none;
+  border-color: #2563eb;
+  background: #ffffff;
+}
+
+/* Send button */
+.chat-input button {
+  padding: 7px 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 8px;
+  border: none;
+  background: #2563eb;
+  color: #ffffff;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+/* Hover */
+.chat-input button:hover {
+  background: #1d4ed8;
+}
+
+/* Disabled state (optional but nice) */
+.chat-input button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+
+
+
+
+
+/* Subtle fade-in animation for new chat messages */
+@keyframes chatFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Apply animation to every new message */
+.chat-msg {
+  animation: chatFadeIn 0.18s ease-out;
 }
